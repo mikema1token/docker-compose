@@ -6,3 +6,16 @@ services:
       - "5000:5000"
   redis:
     image: "redis:alpine"
+  database:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=go_web"
+      - "MYSQL_USER=go_web"
+      - "MYSQL_PASSWORD=go_web"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+      - "33063:3306"
+volumes:
+  dbdata:
